@@ -17,20 +17,20 @@ HTML Reporting: Generates a clean, readable visual report for the final output.
 
 📂 Project Structure
 Bluespine/
-├── main.py                # Main entry point - Orchestrates the flow
-├── api_key.txt            # Your Groq API key (Keep this private!)
-├── requirements.txt       # Project dependencies
-├── core/
-│   ├── __init__.py
-│   ├── agent.py           # LLM logic & pipeline orchestration
-│   ├── rag_engine.py      # RAG logic (Vector DB, Splitting, Retrieval)
-│   └── prompts.py         # Advanced system prompts & SQL schema
-├── utils/
-│   ├── __init__.py
-│   ├── pdf_utils.py       # PDF parsing & text cleaning
-│   └── formatters.py      # HTML generation & Validation logic
-├── input_files/           # Place source PDF policies here
-└── output_files/          # Resulting HTML reports are saved here
+  main.py                # Main entry point - Orchestrates the flow
+  api_key.txt            # Your Groq API key (Keep this private!)
+  requirements.txt       # Project dependencies
+  core/
+    __init__.py
+    agent.py             # LLM logic & pipeline orchestration
+    rag_engine.py        # RAG logic (Vector DB, Splitting, Retrieval)
+    prompts.py           # Advanced system prompts & SQL schema
+  utils/
+    __init__.py
+    pdf_utils.py         # PDF parsing & text cleaning
+    formatters.py        # HTML generation & Validation logic
+  input_files/           # Place source PDF policies here
+  output_files/          # Resulting HTML reports are saved here
 
 🚀 How to Run
 Place a medical policy PDF in the input_files/ folder.
