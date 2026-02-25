@@ -1,0 +1,43 @@
+<html><body><h1>Policy Name: Fractures and Dislocations</h1><hr><h3>Rules List:</h3>
+        <div>
+            <h2>Rule Name: Recasting following congenital hip dislocation</h2>
+            <p><b>Description:</b> Recasting after the initial reduction and casting of a congenital hip dislocation will be processed for reimbursement as a separate service under the appropriate casting code.</p>
+            <p><b>SQL-based implementation:</b></p>
+            <pre style="background:#eee; padding:10px;">SELECT * FROM ClaimLines WHERE ProcedureCode IN ('23605', '23615', '23620', '23625', '23650', '23655', '23660', '23665', '23670', '23675', '23680', '26700', '26742', '27222', '27250', '27252', '27510', '27532', '27550', '27552', '27762', '27788', '27810', '27818', '27840', '27842', '28455', '28456', '28495', '28496', '28515', '28545', '28660', '28665') AND DOS > (SELECT MIN(DOS) FROM ClaimLines WHERE ProcedureCode IN ('23605', '23615', '23620', '23625', '23650', '23655', '23660', '23665', '23670', '23675', '23680', '26700', '26742', '27222', '27250', '27252', '27510', '27532', '27550', '27552', '27762', '27788', '27810', '27818', '27840', '27842', '28455', '28456', '28495', '28496', '28515', '28545', '28660', '28665'))</pre>
+            <p><b>SQL Validation:</b> True</p>
+            <p><b>Invalid Codes Found:</b> []</p>
+            <p><b>Logic Confidence:</b> Medium</p>
+            <p><b>Classification (Rule Type):</b> Overutilization</p>
+            <p><b>Quote:</b> <i>"Recasting after the initial reduction and casting of a congenital hip dislocation will be processed for reimbursement as a separate service under the appropriate casting code."</i></p>
+            <p><b>Quote Validation:</b> True</p>
+        </div>
+        <hr>
+        
+        <div>
+            <h2>Rule Name: Multiple surgery guidelines for closed and open reductions</h2>
+            <p><b>Description:</b> When a closed reduction of a dislocation and open reduction of a fracture in the same area are performed at the same session, multiple surgery guidelines will apply.</p>
+            <p><b>SQL-based implementation:</b></p>
+            <pre style="background:#eee; padding:10px;">SELECT * FROM ClaimLines WHERE ProcedureCode IN (SELECT ProcedureCode FROM ClaimLines WHERE DOS = (SELECT DOS FROM ClaimLines WHERE ProcedureCode IN ('23605', '23615', '23620', '23625', '23650', '23655', '23660', '23665', '23670', '23675', '23680', '26700', '26742', '27222', '27250', '27252', '27510', '27532', '27550', '27552', '27762', '27788', '27810', '27818', '27840', '27842', '28455', '28456', '28495', '28496', '28515', '28545', '28660', '28665')) AND ClaimNumber = (SELECT ClaimNumber FROM ClaimLines WHERE ProcedureCode IN ('23605', '23615', '23620', '23625', '23650', '23655', '23660', '23665', '23670', '23675', '23680', '26700', '26742', '27222', '27250', '27252', '27510', '27532', '27550', '27552', '27762', '27788', '27810', '27818', '27840', '27842', '28455', '28456', '28495', '28496', '28515', '28545', '28660', '28665'))</pre>
+            <p><b>SQL Validation:</b> True</p>
+            <p><b>Invalid Codes Found:</b> []</p>
+            <p><b>Logic Confidence:</b> High</p>
+            <p><b>Classification (Rule Type):</b> Mutual Exclusion</p>
+            <p><b>Quote:</b> <i>"When a closed reduction of a dislocation and open reduction of a fracture in the same area are performed at the same session, multiple surgery guidelines will apply."</i></p>
+            <p><b>Quote Validation:</b> True</p>
+        </div>
+        <hr>
+        
+        <div>
+            <h2>Rule Name: Reimbursement for closed and open reductions on different dates of service</h2>
+            <p><b>Description:</b> When performed on different dates of service, reimbursement will be made at 100% of the approved allowance for both a closed reduction of a dislocation or fracture and open reduction of a dislocation or fracture.</p>
+            <p><b>SQL-based implementation:</b></p>
+            <pre style="background:#eee; padding:10px;">SELECT * FROM ClaimLines WHERE ProcedureCode IN ('23605', '23615', '23620', '23625', '23650', '23655', '23660', '23665', '23670', '23675', '23680', '26700', '26742', '27222', '27250', '27252', '27510', '27532', '27550', '27552', '27762', '27788', '27810', '27818', '27840', '27842', '28455', '28456', '28495', '28496', '28515', '28545', '28660', '28665') AND DOS <> (SELECT MIN(DOS) FROM ClaimLines WHERE ProcedureCode IN ('23605', '23615', '23620', '23625', '23650', '23655', '23660', '23665', '23670', '23675', '23680', '26700', '26742', '27222', '27250', '27252', '27510', '27532', '27550', '27552', '27762', '27788', '27810', '27818', '27840', '27842', '28455', '28456', '28495', '28496', '28515', '28545', '28660', '28665'))</pre>
+            <p><b>SQL Validation:</b> True</p>
+            <p><b>Invalid Codes Found:</b> []</p>
+            <p><b>Logic Confidence:</b> Medium</p>
+            <p><b>Classification (Rule Type):</b> Overutilization</p>
+            <p><b>Quote:</b> <i>"When performed on different dates of service, reimbursement will be made at 100% of the approved allowance for both a closed reduction of a dislocation or fracture and open reduction of a dislocation or fracture."</i></p>
+            <p><b>Quote Validation:</b> True</p>
+        </div>
+        <hr>
+        </body></html>

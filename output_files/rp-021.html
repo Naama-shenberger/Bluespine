@@ -1,0 +1,43 @@
+<html><body><h1>Policy Name: Gynecological Examination and E/M Service Policy</h1><hr><h3>Rules List:</h3>
+        <div>
+            <h2>Rule Name: Gynecological Exam and E&M Performed on the Same Day</h2>
+            <p><b>Description:</b> A gynecological examination (G0101, S0610, S0612, or S0613) and an E/M service (99202 through 99215, 99381 through 99387, 99391 through 99397) may be reported on the same day if the patient's records contain sufficient documentation regarding the appropriateness of performing both services and documentation of the key components that the service(s) were met.</p>
+            <p><b>SQL-based implementation:</b></p>
+            <pre style="background:#eee; padding:10px;">SELECT * FROM ClaimLines WHERE ProcedureCode IN ('G0101', 'S0610', 'S0612', 'S0613') AND EXISTS (SELECT 1 FROM ClaimLines cl2 WHERE cl2.ClaimNumber = ClaimLines.ClaimNumber AND cl2.ProcedureCode IN ('99202', '99203', '99204', '99205', '99212', '99213', '99214', '99215', '99381', '99382', '99383', '99384', '99385', '99386', '99387', '99391', '99392', '99393', '99394', '99395', '99396', '99397') AND cl2.DOS = ClaimLines.DOS);</pre>
+            <p><b>SQL Validation:</b> False</p>
+            <p><b>Invalid Codes Found:</b> ['99203', '99204', '99205', '99212', '99213', '99214', '99382', '99383', '99384', '99385', '99386', '99392', '99393', '99394', '99395', '99396']</p>
+            <p><b>Logic Confidence:</b> High</p>
+            <p><b>Classification (Rule Type):</b> Overutilization</p>
+            <p><b>Quote:</b> <i>"Should the reporting of more than one visit per day by the same physician, or physician group occur on the same day be necessary, the patient’s records must contain : 1. Sufficient documentation regarding the appropriateness of performing both services and, 2. Documentation of the key components that the service (s) were met"</i></p>
+            <p><b>Quote Validation:</b> True</p>
+        </div>
+        <hr>
+        
+        <div>
+            <h2>Rule Name: Pap Smear on the Same Day as Gynecological Examination or E/M Service</h2>
+            <p><b>Description:</b> A pap smear (Q0091) is not eligible as a distinct and separate service when performed on the same day as a gynecological examination (G0101, S0610, S0612, or S0613) or E/M service (99202 through 99215, 99381 through 99387, 99391 through 99397).</p>
+            <p><b>SQL-based implementation:</b></p>
+            <pre style="background:#eee; padding:10px;">SELECT * FROM ClaimLines WHERE ProcedureCode = 'Q0091' AND EXISTS (SELECT 1 FROM ClaimLines cl2 WHERE cl2.ClaimNumber = ClaimLines.ClaimNumber AND cl2.ProcedureCode IN ('G0101', 'S0610', 'S0612', 'S0613', '99202', '99203', '99204', '99205', '99212', '99213', '99214', '99215', '99381', '99382', '99383', '99384', '99385', '99386', '99387', '99391', '99392', '99393', '99394', '99395', '99396', '99397') AND cl2.DOS = ClaimLines.DOS);</pre>
+            <p><b>SQL Validation:</b> False</p>
+            <p><b>Invalid Codes Found:</b> ['99203', '99204', '99205', '99212', '99213', '99214', '99382', '99383', '99384', '99385', '99386', '99392', '99393', '99394', '99395', '99396']</p>
+            <p><b>Logic Confidence:</b> High</p>
+            <p><b>Classification (Rule Type):</b> Service Not Covered</p>
+            <p><b>Quote:</b> <i>"A pap smear is not eligible as a distinct and separate service."</i></p>
+            <p><b>Quote Validation:</b> True</p>
+        </div>
+        <hr>
+        
+        <div>
+            <h2>Rule Name: Gynecological Exam and Preventive Exam Performed on the Same Day</h2>
+            <p><b>Description:</b> A gynecological examination (G0101, S0610, S0612, or S0613) and a preventive exam (99381 through 99387, 99391 through 99397) may be reported on the same day if the patient's records contain sufficient documentation regarding the appropriateness of performing both services and documentation of the key components that the service(s) were met.</p>
+            <p><b>SQL-based implementation:</b></p>
+            <pre style="background:#eee; padding:10px;">SELECT * FROM ClaimLines WHERE ProcedureCode IN ('G0101', 'S0610', 'S0612', 'S0613') AND EXISTS (SELECT 1 FROM ClaimLines cl2 WHERE cl2.ClaimNumber = ClaimLines.ClaimNumber AND cl2.ProcedureCode IN ('99381', '99382', '99383', '99384', '99385', '99386', '99387', '99391', '99392', '99393', '99394', '99395', '99396', '99397') AND cl2.DOS = ClaimLines.DOS);</pre>
+            <p><b>SQL Validation:</b> False</p>
+            <p><b>Invalid Codes Found:</b> ['99382', '99383', '99384', '99385', '99386', '99392', '99393', '99394', '99395', '99396']</p>
+            <p><b>Logic Confidence:</b> High</p>
+            <p><b>Classification (Rule Type):</b> Overutilization</p>
+            <p><b>Quote:</b> <i>"Should the reporting of preventive medicine and Office/Outpatient E/M service (s) by the same physician or physician group occur on the same day be necessary, the patient’s records must contain : 1. Sufficient documentation regarding the appropriateness of performing both services and , 2. Documentation the key components of the Office/Outpatient E/M service have been met"</i></p>
+            <p><b>Quote Validation:</b> True</p>
+        </div>
+        <hr>
+        </body></html>

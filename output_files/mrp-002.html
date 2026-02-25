@@ -1,0 +1,43 @@
+<html><body><h1>Policy Name: Clinical Pathology Consultation Services</h1><hr><h3>Rules List:</h3>
+        <div>
+            <h2>Rule Name: Clinical Consultation Request</h2>
+            <p><b>Description:</b> Clinical consultation services are requested by the patient's attending physician</p>
+            <p><b>SQL-based implementation:</b></p>
+            <pre style="background:#eee; padding:10px;">SELECT * FROM ClaimLines WHERE ProcedureCode IN ('80503', '80504', '80505', '80506') AND ClaimNumber IN (SELECT ClaimNumber FROM Claims WHERE NPI IN (SELECT NPI FROM ProviderInfo WHERE Specialty = 'Pathology')) -- REQUIRES MANUAL REVIEW OF DOCUMENTATION</pre>
+            <p><b>SQL Validation:</b> True</p>
+            <p><b>Invalid Codes Found:</b> []</p>
+            <p><b>Logic Confidence:</b> High</p>
+            <p><b>Classification (Rule Type):</b> Service Not Covered</p>
+            <p><b>Quote:</b> <i>"Clinical consultation services are requested by the patient's attending physician"</i></p>
+            <p><b>Quote Validation:</b> True</p>
+        </div>
+        <hr>
+        
+        <div>
+            <h2>Rule Name: Test Result Outside Normal Range</h2>
+            <p><b>Description:</b> The services are related to a test result that lies outside the clinically significant normal or expected range in view of the condition of the patient</p>
+            <p><b>SQL-based implementation:</b></p>
+            <pre style="background:#eee; padding:10px;">SELECT * FROM ClaimLines WHERE ProcedureCode IN ('80503', '80504', '80505', '80506') AND ClaimNumber IN (SELECT ClaimNumber FROM Claims WHERE NPI IN (SELECT NPI FROM ProviderInfo WHERE Specialty = 'Pathology')) -- REQUIRES MANUAL REVIEW OF DOCUMENTATION</pre>
+            <p><b>SQL Validation:</b> True</p>
+            <p><b>Invalid Codes Found:</b> []</p>
+            <p><b>Logic Confidence:</b> High</p>
+            <p><b>Classification (Rule Type):</b> Service Not Covered</p>
+            <p><b>Quote:</b> <i>"The services are related to a test result that lies outside the clinically significant normal or expected range in view of the condition of the patient"</i></p>
+            <p><b>Quote Validation:</b> True</p>
+        </div>
+        <hr>
+        
+        <div>
+            <h2>Rule Name: Clinical Consultation Documentation</h2>
+            <p><b>Description:</b> Clinical consultation services are documented in a written narrative report beyond the original diagnostic procedural assessment</p>
+            <p><b>SQL-based implementation:</b></p>
+            <pre style="background:#eee; padding:10px;">SELECT * FROM ClaimLines WHERE ProcedureCode IN ('80503', '80504', '80505', '80506') AND ClaimNumber IN (SELECT ClaimNumber FROM Claims WHERE NPI IN (SELECT NPI FROM ProviderInfo WHERE Specialty = 'Pathology')) -- REQUIRES MANUAL REVIEW OF DOCUMENTATION</pre>
+            <p><b>SQL Validation:</b> True</p>
+            <p><b>Invalid Codes Found:</b> []</p>
+            <p><b>Logic Confidence:</b> High</p>
+            <p><b>Classification (Rule Type):</b> Service Not Covered</p>
+            <p><b>Quote:</b> <i>"Clinical consultation services are documented in a written narrative report beyond the original diagnostic procedural assessment"</i></p>
+            <p><b>Quote Validation:</b> True</p>
+        </div>
+        <hr>
+        </body></html>
