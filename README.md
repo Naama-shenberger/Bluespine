@@ -16,7 +16,12 @@ Verbatim Quotes: Validates that extracted quotes exist word-for-word in the poli
 HTML Reporting: Generates a clean, readable visual report for the final output.
 
 📂 Project Structure
+
+
+
 <img width="681" height="351" alt="Screenshot 2026-02-25 at 2 51 31 PM" src="https://github.com/user-attachments/assets/f60ba2fb-1e15-409c-8148-84dfa67841a9" />
+
+
 
 
   
